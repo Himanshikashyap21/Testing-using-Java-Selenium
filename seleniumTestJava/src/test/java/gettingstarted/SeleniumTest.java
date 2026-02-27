@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
 import java.time.Duration;
 
 public class SeleniumTest {
@@ -95,13 +97,23 @@ public class SeleniumTest {
         }
 
         public static void CreateUser(WebDriver driver){
-            driver.findElement(By.linkText("Employees")).click();
-            driver.findElement(By.linkText("New Employee")).click();
-            driver.findElement(By.linkText("Name")).sendKeys("AutoUser1");
-            driver.findElement(By.linkText("Salary")).sendKeys("40000");
-            driver.findElement(By.linkText("DurationWorked")).sendKeys("40");
-            driver.findElement(By.linkText("Email Address")).sendKeys("AutoUser1@ea.com");
+            driver.findElement(By.linkText("\uD83D\uDC65 Employees")).click();
+            driver.findElement(By.linkText("+ New Employee")).click();
+            driver.findElement(By.name("Name")).sendKeys("AutoUser1");
+            //driver.findElement(By.name("Salary")).sendKeys("40000");
+            driver.findElement(By.id("DurationWorked")).sendKeys("40");
+            Select selectGrade = new Select(driver.findElement(By.id("Grade")));
+            selectGrade.selectByVisibleText("Middle");
+            driver.findElement(By.name("Email")).sendKeys("AutoUser1@ea.com");
             driver.findElement(By.cssSelector(".btn")).click();
+
+            //if the mandatory field error for salary appears, then enter the salary...
+            if(driver.findElement(By.xpath("//span[text()+'The Salary field is required.']")).isDisplayed()){
+                driver.findElement(By.name("Salary")).sendKeys("10000");
+                driver.findElement(By.cssSelector(".btn")).click();
+            }else{
+                //do nothing
+            }
         }
 
         public static void Logoff(WebDriver driver){
