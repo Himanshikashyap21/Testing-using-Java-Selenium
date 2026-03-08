@@ -1,5 +1,6 @@
 package gettingstarted;
 
+import extensions.UIElementExtensions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -90,10 +91,22 @@ public class SeleniumTest {
         }
 
         public static void Login(WebDriver driver){
-            driver.findElement(By.linkText("Login")).click();//for login link
-            driver.findElement(By.name("UserName")).sendKeys("admin");//for username
-            driver.findElement(By.name("Password")).sendKeys("password");//for password
-            driver.findElement(By.cssSelector(".btn")).click();//for login or submit button
+
+            //driver.findElement(By.linkText("Login")).click();//for login link
+            UIElementExtensions.performClick(driver, By.linkText("Login"));//alternate option
+
+            //Enter Username short version
+            UIElementExtensions.performEnterText(driver,By.name("UserName"),"admin");
+            //for username
+            //driver.findElement(By.name("UserName")).click();
+            //driver.findElement(By.name("UserName")).clear();
+            //driver.findElement(By.name("UserName")).sendKeys("admin");
+
+            //driver.findElement(By.name("Password")).sendKeys("password");//for password
+            UIElementExtensions.performEnterText(driver,By.name("Password"),"password");//alternate for password
+
+            //driver.findElement(By.cssSelector(".btn")).click();//for login or submit button
+            UIElementExtensions.performClick(driver, By.cssSelector(".btn"));//alternate for submit or login button
         }
 
         public static void CreateUser(WebDriver driver){
@@ -102,14 +115,20 @@ public class SeleniumTest {
             driver.findElement(By.name("Name")).sendKeys("AutoUser1");
             //driver.findElement(By.name("Salary")).sendKeys("40000");
             driver.findElement(By.id("DurationWorked")).sendKeys("40");
-            Select selectGrade = new Select(driver.findElement(By.id("Grade")));
-            selectGrade.selectByVisibleText("Middle");
+
+            //Select selectGrade = new Select(driver.findElement(By.id("Grade")));
+            //selectGrade.selectByVisibleText("Middle");
+            //Alternate fort above dropdown
+            UIElementExtensions.performDropDownSelectionByIndex(driver, By.id("Grade"), 3);
+
+
             driver.findElement(By.name("Email")).sendKeys("AutoUser1@ea.com");
             driver.findElement(By.cssSelector(".btn")).click();
 
             //if the mandatory field error for salary appears, then enter the salary...
             if(driver.findElement(By.xpath("//span[text()+'The Salary field is required.']")).isDisplayed()){
                 driver.findElement(By.name("Salary")).sendKeys("10000");
+                UIElementExtensions.performDropDownSelectionByIndex(driver, By.id("Grade"), 3);
                 driver.findElement(By.cssSelector(".btn")).click();
             }else{
                 //do nothing
