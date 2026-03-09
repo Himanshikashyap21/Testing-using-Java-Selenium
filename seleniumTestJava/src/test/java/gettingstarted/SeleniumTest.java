@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
+import pages.HomePage;
 
 import java.time.Duration;
 
@@ -18,10 +19,17 @@ public class SeleniumTest {
 
         //navigate to a specific URL.....
         driver.navigate().to("http://eaapp.somee.com");
-        Login(driver);
+
+        HomePage homePage= new HomePage(driver);
+        //Page navigation concept of Selenium......
+        var loginPage = homePage.clicklogin();
+        loginPage.performLogin("admin","password");
+
+
+        //Login(driver);
 
         //create user....
-        CreateUser(driver);
+        //CreateUser(driver);
         Logoff(driver);
 
         //set the screen as full screen.....
