@@ -3,12 +3,8 @@ package gettingstarted;
 import extensions.UIElementExtensions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.Select;
 import pages.HomePage;
-
-import java.time.Duration;
 
 public class SeleniumTest {
     public static void main(String[] args){
@@ -23,8 +19,10 @@ public class SeleniumTest {
         HomePage homePage= new HomePage(driver);
         //Page navigation concept of Selenium......
         var loginPage = homePage.clicklogin();
-        loginPage.performLogin("admin","password");
-
+        homePage=loginPage.performLogin("admin","password");
+        var employeeListPage=homePage.clickEmployeeList();
+        var createEmployeePage = employeeListPage.clickCreateNew();
+        createEmployeePage.createNewEmployee("AutoUser2","2222","autotestuser@gmail.com","20000","Middle");
 
         //Login(driver);
 
@@ -98,24 +96,24 @@ public class SeleniumTest {
 
         }
 
-        public static void Login(WebDriver driver){
+        //public static void Login(WebDriver driver){
 
             //driver.findElement(By.linkText("Login")).click();//for login link
-            UIElementExtensions.performClick(driver, By.linkText("Login"));//alternate option
+            //UIElementExtensions.performClick(driver, By.linkText("Login"));//alternate option
 
             //Enter Username short version
-            UIElementExtensions.performEnterText(driver,By.name("UserName"),"admin");
+            //UIElementExtensions.performEnterText(driver,By.name("UserName"),"admin");
             //for username
             //driver.findElement(By.name("UserName")).click();
             //driver.findElement(By.name("UserName")).clear();
             //driver.findElement(By.name("UserName")).sendKeys("admin");
 
             //driver.findElement(By.name("Password")).sendKeys("password");//for password
-            UIElementExtensions.performEnterText(driver,By.name("Password"),"password");//alternate for password
+            //UIElementExtensions.performEnterText(driver,By.name("Password"),"password");//alternate for password
 
             //driver.findElement(By.cssSelector(".btn")).click();//for login or submit button
-            UIElementExtensions.performClick(driver, By.cssSelector(".btn"));//alternate for submit or login button
-        }
+            //UIElementExtensions.performClick(driver, By.cssSelector(".btn"));//alternate for submit or login button
+
 
         public static void CreateUser(WebDriver driver){
             driver.findElement(By.linkText("\uD83D\uDC65 Employees")).click();
@@ -144,7 +142,7 @@ public class SeleniumTest {
         }
 
         public static void Logoff(WebDriver driver){
-            driver.findElement(By.linkText("Logout")).click();
+            driver.findElement(By.linkText("Log off")).click();
         }
     }
 

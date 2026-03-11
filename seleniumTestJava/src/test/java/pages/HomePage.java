@@ -2,6 +2,10 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class HomePage {
 
@@ -15,7 +19,7 @@ public class HomePage {
     private By lnkLogin= By.linkText("Login");
 
     //Locators for Employee list
-    private By lnkEmployeeList = By.linkText("Employee List");
+    private By lnkEmployeeList = By.linkText("\uD83D\uDC65 Employees");
 
     public LoginPage clicklogin(){
         driver.findElement(lnkLogin).click();
@@ -24,6 +28,6 @@ public class HomePage {
 
     public EmployeeListPage clickEmployeeList() {
         driver.findElement(lnkEmployeeList).click();
-        return new EmployeeListPage(driver);
+        return new EmployeeListPage(driver);}
     }
-}
+
