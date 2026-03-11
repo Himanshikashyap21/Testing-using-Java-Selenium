@@ -1,7 +1,10 @@
 package pages;
-
+import extensions.UIElementExtensions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class EmployeeListPage {
 
@@ -9,13 +12,15 @@ public class EmployeeListPage {
 
     public EmployeeListPage(WebDriver driver){
         this.driver=driver;
+        PageFactory.initElements(driver,this);
     }
     //Create New
-    private By btnCreateNew = By.linkText("+ New Employee");
+    @FindBy(linkText = "+ New Employee")
+    private WebElement btnCreateNew;
 
     //Grid with all the list of employee
     public CreateEmployeePage clickCreateNew(){
-        driver.findElement(btnCreateNew).click();
+        UIElementExtensions.performClick(btnCreateNew);
         return new CreateEmployeePage(driver);
     }
 

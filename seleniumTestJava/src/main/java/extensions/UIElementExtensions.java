@@ -1,7 +1,4 @@
 package extensions;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
@@ -21,13 +18,13 @@ public class UIElementExtensions {
         select.selectByVisibleText(dropDownText);
     }
 
-    public static void performDropDownSelectionByIndex(WebDriver driver, By locator, int index){
-        var select = new Select(driver.findElement(locator));
+    public static void performDropDownSelectionByIndex(WebElement locator, int index){
+        var select = new Select(locator);
         select.selectByIndex(index);
     }
 
-    public static void performDropDownSelectionByValue(WebDriver driver, By locator, String dropDownValue){
-        var select = new Select(driver.findElement(locator));
+    public static void performDropDownSelectionByValue(WebElement locator, String dropDownValue){
+        var select = new Select(locator);
         select.selectByValue(dropDownValue);
     }
 }

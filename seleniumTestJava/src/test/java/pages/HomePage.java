@@ -1,7 +1,11 @@
 package pages;
 
+import extensions.UIElementExtensions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -13,21 +17,24 @@ public class HomePage {
 
     public HomePage(WebDriver driver){
         this.driver = driver;
+        PageFactory.initElements(driver,this);
     }
 
     //Locators for login
-    private By lnkLogin= By.linkText("Login");
+    @FindBy(linkText = "Login")
+    private WebElement lnkLogin;
 
     //Locators for Employee list
-    private By lnkEmployeeList = By.linkText("\uD83D\uDC65 Employees");
+    @FindBy(linkText = "\uD83D\uDC65 Employees")
+    private WebElement lnkEmployeeList;
 
     public LoginPage clicklogin(){
-        driver.findElement(lnkLogin).click();
+        lnkLogin.click();
         return new LoginPage(driver);
     }
 
     public EmployeeListPage clickEmployeeList() {
-        driver.findElement(lnkEmployeeList).click();
+        lnkEmployeeList.click();
         return new EmployeeListPage(driver);}
     }
 

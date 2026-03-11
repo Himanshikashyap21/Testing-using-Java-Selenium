@@ -1,7 +1,11 @@
 package pages;
 
+import extensions.UIElementExtensions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
 
@@ -9,16 +13,23 @@ public class LoginPage {
 
     public LoginPage(WebDriver driver) {
         this.driver=driver;
+        PageFactory.initElements(driver,this);
     }
 
-    private By txtUserName=By.name("UserName");
-    private By txtPassword=By.name("Password");
-    private By btnLogin =By.cssSelector(".btn");
+    @FindBy(name = "UserName")
+    private WebElement txtUserName;
+
+    @FindBy(name = "Password")
+    private WebElement txtPassword;
+
+    @FindBy(css = ".btn")
+    private WebElement btnLogin;
+
 
     public HomePage performLogin(String userName, String password){
-        driver.findElement(txtUserName).sendKeys(userName);
-        driver.findElement(txtPassword).sendKeys(password);
-        driver.findElement(btnLogin).click();
+        UIElementExtensions.performEnterText(txtUserName, userName);
+        UIElementExtensions.performEnterText(txtPassword, password);
+        UIElementExtensions.performClick(btnLogin);
         return new HomePage(driver);
     }
 
