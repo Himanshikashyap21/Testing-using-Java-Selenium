@@ -23,8 +23,12 @@ public class CreateEmployeePage {
     @FindBy(id = "DurationWorked")
     private WebElement txtDurationWorked;
 
+    @FindBy(id = "Age")
+    private WebElement txtAge;
+
     @FindBy(name = "Email")
     private WebElement txtEmail;
+
 
     @FindBy(name = "Salary")
     private WebElement txtSalary;
@@ -32,8 +36,13 @@ public class CreateEmployeePage {
     @FindBy(name = "Grade")
     private WebElement ddlGrade;
 
-    @FindBy(css = ".btn")
-    private WebElement btnCreate;
+
+
+//    @FindBy(css = ".btn")
+//    private WebElement btnSubmit;
+
+    @FindBy(xpath="//input[@value='Create']")
+    WebElement btnSubmit;
 
 //    private By txtName = By.name("Name");
 //    private By txtDurationWorked = By.id("DurationWorked");
@@ -42,13 +51,14 @@ public class CreateEmployeePage {
 //    private By ddlGrade = By.name("Grade");
 //    private By btnCreate = By.cssSelector(".btn");
 
-    public EmployeeListPage createNewEmployee(String name, String durationWorked, String email, String salary, String grade){
+    public EmployeeListPage createNewEmployee(String name, String durationWorked, String age, String email, String salary, String grade){
         UIElementExtensions.performEnterText(txtName, name);
         UIElementExtensions.performEnterText(txtDurationWorked,durationWorked);
+        UIElementExtensions.performEnterText(txtDurationWorked,age);
         UIElementExtensions.performEnterText(txtSalary,salary);
         UIElementExtensions.performEnterText(txtEmail,email);
         UIElementExtensions.performDropDownSelectionByText(ddlGrade,grade);
-        UIElementExtensions.performClick(btnCreate);
+        UIElementExtensions.performClick(btnSubmit);
         return new EmployeeListPage(driver);
     }
 

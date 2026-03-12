@@ -13,22 +13,21 @@ public class SeleniumTest {
         //2. launch the browser....
         WebDriver driver = new ChromeDriver();
 
-        //navigate to a specific URL.....
+        //3. navigate to a specific URL.....
         driver.navigate().to("http://eaapp.somee.com");
 
         HomePage homePage= new HomePage(driver);
         //Page navigation concept of Selenium......
-        var loginPage = homePage.clicklogin();
+        var loginPage = homePage.clickLogin();
         homePage=loginPage.performLogin("admin","password");
         var employeeListPage=homePage.clickEmployeeList();
         var createEmployeePage = employeeListPage.clickCreateNew();
-        createEmployeePage.createNewEmployee("AutoUser2","2222","autotestuser@gmail.com","20000","Middle");
-
+        createEmployeePage.createNewEmployee("AutoUser2","200","25","autotestuser@gmail.com","100000","Middle");
         //Login(driver);
 
         //create user....
         //CreateUser(driver);
-        Logoff(driver);
+         Logoff(driver);
 
         //set the screen as full screen.....
         //driver.manage().window().fullscreen();

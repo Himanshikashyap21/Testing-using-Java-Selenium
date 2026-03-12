@@ -24,17 +24,25 @@ public class HomePage {
     @FindBy(linkText = "Login")
     private WebElement lnkLogin;
 
+    @FindBy(linkText = "Log off")
+    private WebElement lnkLogoff;
+
     //Locators for Employee list
     @FindBy(linkText = "\uD83D\uDC65 Employees")
     private WebElement lnkEmployeeList;
 
-    public LoginPage clicklogin(){
-        lnkLogin.click();
+    public LoginPage clickLogin(){
+        UIElementExtensions.performClick(lnkLogin);
         return new LoginPage(driver);
     }
 
     public EmployeeListPage clickEmployeeList() {
         lnkEmployeeList.click();
-        return new EmployeeListPage(driver);}
+        return new EmployeeListPage(driver);
     }
+
+    public void clickLogoff() {
+        lnkLogoff.click();
+    }
+}
 
