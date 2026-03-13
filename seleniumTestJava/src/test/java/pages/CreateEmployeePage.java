@@ -41,8 +41,9 @@ public class CreateEmployeePage {
 //    @FindBy(css = ".btn")
 //    private WebElement btnSubmit;
 
-    @FindBy(xpath="//input[@value='Create']")
-    WebElement btnSubmit;
+    @FindBy(css = ".btn")
+    private WebElement btnCreate;
+
 
 //    private By txtName = By.name("Name");
 //    private By txtDurationWorked = By.id("DurationWorked");
@@ -54,11 +55,11 @@ public class CreateEmployeePage {
     public EmployeeListPage createNewEmployee(String name, String durationWorked, String age, String email, String salary, String grade){
         UIElementExtensions.performEnterText(txtName, name);
         UIElementExtensions.performEnterText(txtDurationWorked,durationWorked);
-        UIElementExtensions.performEnterText(txtDurationWorked,age);
+        UIElementExtensions.performEnterText(txtAge,age);
         UIElementExtensions.performEnterText(txtSalary,salary);
         UIElementExtensions.performEnterText(txtEmail,email);
         UIElementExtensions.performDropDownSelectionByText(ddlGrade,grade);
-        UIElementExtensions.performClick(btnSubmit);
+        UIElementExtensions.performClick(driver, btnCreate);
         return new EmployeeListPage(driver);
     }
 

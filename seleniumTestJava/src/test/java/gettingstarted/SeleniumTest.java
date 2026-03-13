@@ -22,12 +22,12 @@ public class SeleniumTest {
         homePage=loginPage.performLogin("admin","password");
         var employeeListPage=homePage.clickEmployeeList();
         var createEmployeePage = employeeListPage.clickCreateNew();
-        createEmployeePage.createNewEmployee("AutoUser2","200","25","autotestuser@gmail.com","100000","Middle");
+        createEmployeePage.createNewEmployee("AutoUser2","25","200","autotestuser@gmail.com","100000","Middle");
         //Login(driver);
 
         //create user....
         //CreateUser(driver);
-         Logoff(driver);
+        Logoff(driver);
 
         //set the screen as full screen.....
         //driver.manage().window().fullscreen();
@@ -141,7 +141,7 @@ public class SeleniumTest {
 //        }
 
         public static void Logoff(WebDriver driver){
-            driver.findElement(By.linkText("Log off")).click();
+        driver.findElement(By.linkText("Log off")).click();
         }
     }
 

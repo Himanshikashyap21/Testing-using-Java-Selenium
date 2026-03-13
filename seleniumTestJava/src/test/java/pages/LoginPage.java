@@ -29,7 +29,7 @@ public class LoginPage {
     public HomePage performLogin(String userName, String password){
         UIElementExtensions.performEnterText(txtUserName, userName);
         UIElementExtensions.performEnterText(txtPassword, password);
-        UIElementExtensions.performClick(btnLogin);
+        UIElementExtensions.performClick(driver, btnLogin);
         return new HomePage(driver);
     }
 

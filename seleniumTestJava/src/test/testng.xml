@@ -1,0 +1,21 @@
+<!DOCTYPE suite SYSTEM "https//testng.org/testng-1.0.dtd">
+
+<suite name="TestSuite">
+    <parameter name="UserName" value="admins"/>
+    <parameter name="Password" value="passwords"/>
+
+
+    <test name="SmokeTest" parallel="classes">
+        <classes>
+            <class name="gettingstarted.TestNGTest"/>
+        </classes>
+    </test>
+
+    <test name="RegressionTest" parallel="classes">
+        <classes>
+            <class name="gettingstarted.TestNGTest"/>
+            <class name="gettingstarted.TestNGTest2"/>
+        </classes>
+    </test>
+
+</suite>

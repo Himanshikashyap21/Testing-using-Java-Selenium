@@ -8,7 +8,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.HomePage;
 
-public class TestNGTest {
+public class TestNGTest2 {
 
     private WebDriver driver;
 
@@ -19,14 +19,11 @@ public class TestNGTest {
     }
 
     @Parameters({"UserName" , "Password"})
-
-
-
     @Test
     public void testBCreateEmployee(String userName, String password){
         var homePage = new HomePage(driver);
         var loginPage = homePage.clickLogin();
-        homePage = loginPage.performLogin(userName,password);
+        homePage = loginPage.performLogin("admin","password");
 
         var employeeListPage = homePage.clickEmployeeList();
         var createEmployeePage = employeeListPage.clickCreateNew();

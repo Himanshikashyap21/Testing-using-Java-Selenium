@@ -20,9 +20,20 @@ public class EmployeeListPage {
 
     //Grid with all the list of employee
     public CreateEmployeePage clickCreateNew(){
-        UIElementExtensions.performClick(btnCreateNew);
+        UIElementExtensions.performClick(driver, btnCreateNew);
         return new CreateEmployeePage(driver);
     }
 
+    @FindBy(xpath = "//a[contains(text(),'Log off') or contains(text(),'Logoff') or contains(@href,'Logout')]")
+    private WebElement lnkLogoff;
+
+    public void clickLogoff() {
+        // Check if we are even logged in first
+        if (driver.getPageSource().contains("Log off")) {
+            UIElementExtensions.performClick(driver, lnkLogoff);
+        } else {
+            System.out.println("Already logged out or session expired. Skipping Logoff.");
+        }
+    }
 
 }
